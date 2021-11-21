@@ -1,5 +1,5 @@
+import { ADD_BUG, REMOVE_BUG } from "./actions";
 import store from "./store";
-import * as actions from "./actionTypes";
 
 // subscribe fires whenever state is changed
 // subscribe returns a function to unsubscribe. to unsubscribe, just unsubscribe()
@@ -13,12 +13,7 @@ const unsubscribe = store.subscribe(() => {
 		removeButton.innerText = "Remove";
 		removeButton.addEventListener("click", () => {
 			// the object inside dispatch is the action object in the reducer
-			store.dispatch({
-				type: actions.REMOVE_BUG,
-				payload: {
-					id: bug.id,
-				},
-			});
+			store.dispatch(REMOVE_BUG(bug.id));
 		});
 		bugElement.appendChild(removeButton);
 		document.querySelector("#bugs").appendChild(bugElement);
@@ -30,10 +25,5 @@ document.querySelector("#submit").addEventListener("click", (e) => {
 	const description = document.querySelector("#inputText").value;
 	document.querySelector("#inputText").value = null;
 
-	store.dispatch({
-		type: actions.ADD_BUG,
-		payload: {
-			description: description,
-		},
-	});
+	store.dispatch(ADD_BUG(description));
 });
