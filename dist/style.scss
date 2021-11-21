@@ -14,14 +14,15 @@ body {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			height: 5rem;
+			// height: 5rem;
 			border-width: 0.1rem;
 			border-color: aqua;
 			border-style: solid;
-			padding: 0 0.5rem;
+			padding: 1rem 1rem;
 			div {
 				display: flex;
 				align-items: center;
+				margin-left: auto;
 				input {
 					margin: 0 0.5rem;
 					width: 2rem;

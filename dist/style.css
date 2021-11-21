@@ -33,11 +33,10 @@ body ul li {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 5rem;
   border-width: 0.1rem;
   border-color: aqua;
   border-style: solid;
-  padding: 0 0.5rem;
+  padding: 1rem 1rem;
 }
 
 body ul li div {
@@ -47,6 +46,7 @@ body ul li div {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-left: auto;
 }
 
 body ul li div input {
