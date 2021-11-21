@@ -8,7 +8,16 @@ const unsubscribe = store.subscribe(() => {
 	document.querySelector("#bugs").innerText = null;
 	store.getState().forEach((bug) => {
 		const bugElement = document.createElement("li");
-		bugElement.innerText = `Description: ${bug.description} - Resolved? ${bug.resolved}`;
+		bugElement.innerText = `Description: ${bug.description}`;
+
+		const resolvedAndCheckbox = document.createElement("div");
+		resolvedAndCheckbox.innerText = "Resolved? ";
+		const checkbox = document.createElement("input");
+		checkbox.setAttribute("type", "checkbox");
+		checkbox.setAttribute("name", "resolved");
+		resolvedAndCheckbox.appendChild(checkbox);
+		bugElement.appendChild(resolvedAndCheckbox);
+
 		const removeButton = document.createElement("button");
 		removeButton.innerText = "Remove";
 		removeButton.addEventListener("click", () => {
@@ -16,6 +25,7 @@ const unsubscribe = store.subscribe(() => {
 			store.dispatch(REMOVE_BUG(bug.id));
 		});
 		bugElement.appendChild(removeButton);
+
 		document.querySelector("#bugs").appendChild(bugElement);
 	});
 });

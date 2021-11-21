@@ -18,6 +18,17 @@ body {
 			border-width: 0.1rem;
 			border-color: aqua;
 			border-style: solid;
+			padding: 0 0.5rem;
+			div {
+				display: flex;
+				align-items: center;
+				input {
+					margin: 0 0.5rem;
+					width: 2rem;
+					height: 2rem;
+					align-self: center;
+				}
+			}
 		}
 	}
 }
