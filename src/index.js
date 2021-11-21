@@ -1,14 +1,9 @@
 import store from "./store";
 
-// the object inside dispatch is the action object in the reducer
-store.dispatch({
-	type: "addBug",
-	payload: {
-		description: "The worst bug of all.",
-	},
-});
-
-function updateBugs() {
+// subscribe fires whenever state is changed
+// subscribe returns a function to unsubscribe. to unsubscribe, just unsubscribe()
+const unsubscribe = store.subscribe(() => {
+	console.log(`state changed`);
 	document.querySelector("#bugs").innerText = null;
 	store.getState().forEach((bug) => {
 		const bugElement = document.createElement("li");
@@ -16,21 +11,21 @@ function updateBugs() {
 		const removeButton = document.createElement("button");
 		removeButton.innerText = "Remove";
 		removeButton.addEventListener("click", () => {
+			// the object inside dispatch is the action object in the reducer
 			store.dispatch({
 				type: "removeBug",
 				payload: {
 					id: bug.id,
 				},
 			});
-			updateBugs();
 		});
 		bugElement.appendChild(removeButton);
 		document.querySelector("#bugs").appendChild(bugElement);
 	});
-}
-updateBugs();
+});
 
-document.querySelector("#submit").addEventListener("click", () => {
+document.querySelector("#submit").addEventListener("click", (e) => {
+	e.preventDefault();
 	const description = document.querySelector("#inputText").value;
 	document.querySelector("#inputText").value = null;
 
@@ -40,6 +35,4 @@ document.querySelector("#submit").addEventListener("click", () => {
 			description: description,
 		},
 	});
-
-	updateBugs();
 });
